@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block contents %}
+<br>
+<h1>看的</h1>
+<br>
+<table class="hit-table">
+    <!-- {% for row in table %}
+    <tr class="hit-tr">
+        {% for cell in row %}
+            <td>
+            {{ cell }}
+            </td>
+        {% endfor %}
+        </tr>
+    {% endfor %} -->
+    {% for r in range(4) %}
+    <tr class="hit-tr">
+        {% for c in range(6) %}
+        <td class="cell"></td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    <tr class="ite">
+    {% for i in range(6, 0, -1) %}
+        <td class="bottom-number">{{ i }}</td>
+    {% endfor %}
+    </tr>
+</table>
+
+<br>
+<br>
+<p><a href="{{ url_for('index') }}">戻る</a></p>
+
+<script>
+    const res = JSON.parse('{{ res | tojson | safe }}');
+</script>
+<script src="{{ url_for('static', filename='/script.js') }}"></script>
+{% endblock %}
