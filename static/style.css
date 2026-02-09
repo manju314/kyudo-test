@@ -1,63 +1,250 @@
-.grid {
-    border-collapse: collapse;
+html {
+  /* モダンなWebアプリの推奨スタック */
+    font-family: "Inter", "Noto Sans JP", "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+    width: 90vw;
+    height: 90vw;
+    margin: auto;
+    font-size: 100%;
 }
-.grid td {
-    border: 1px solid #333;
-    width: 75px;
-    height: 75px;
+
+form {
+    margin: auto;
+}
+
+select {
+    font-size: large;
+    border: 2px solid #dddddd;
+    background: #eeeeee;
+    width: 100%;
+    padding: 15px;
+    transition: 0.4s;
+}
+
+.start-button {
+    width: 100%;
     text-align: center;
-    font-size: 18px;
+    color: #eeeeee;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: rgb(56, 56, 56);
+    border: none;
+    border-radius: 15px;
 }
 
-/* スマホ用（画面幅 576px 以下） */
-@media (max-width: 576px) {
-    .mobile-big-select {
-        font-size: 2.5rem;
-        height: 90px;
+/* main {
+    margin-left: 10%;
+} */
+
+.switch {
+    display: flex;
+    align-items: center;
+}
+
+p {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.switch-button {
+    width: fit-content;
+    position: relative;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+input[type='checkbox'] {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+input:checked ~ .circle {
+    transform: translateX(100%);
+    background-color: rgb(13, 169, 222);
+}
+
+input:checked ~ .base {
+    background-color: rgb(219, 234, 254);
+    transform: 0.5s;
+}
+
+.circle {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    background-color: white;
+    transition: 0.5s;
+}
+
+.base {
+    width: 56px;
+    border-radius: 16px;
+    height: 32px;
+    background-color: #ddd;
+}
+
+.title {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 481px) {
+	/* 481px以上に適用されるCSS（タブレット用） */
+    body {
+        width: 90vw;
+        margin: auto;
+        font-size: 150%;
     }
 
-    .mobile-big-btn {
-        font-size: 2rem;
+    form {
+        margin: auto;
+    }
+
+    select {
+        font-size: large;
+        border: 2px solid #dddddd;
+        background: #eeeeee;
+        width: 100%;
         padding: 15px;
+        transition: 0.4s;
     }
 
-    .mobile-big-label {
-        font-size: 1.8rem;
-        }
+    .start-button {
+        width: 100%;
+        text-align: center;
+        color: #eeeeee;
+        margin-top: 30px;
+        padding: 15px;
+        background-color: rgb(56, 56, 56);
+        border: none;
+        border-radius: 15px;
+    }
+
+    /* main {
+        margin-left: 10%;
+    } */
+
+    .switch {
+        display: flex;
+        align-items: center;
+    }
+
+    p {
+        width: fit-content;
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    .switch-button {
+        width: fit-content;
+        position: relative;
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    input[type='checkbox'] {
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    input:checked ~ .circle {
+        transform: translateX(100%);
+        background-color: rgb(13, 169, 222);
+    }
+
+    input:checked ~ .base {
+        background-color: rgb(219, 234, 254);
+        transform: 0.5s;
+    }
+
+    .circle {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        background-color: white;
+        transition: 0.5s;
+    }
+
+    .base {
+        width: 56px;
+        border-radius: 16px;
+        height: 32px;
+        background-color: #ddd;
+    }
+
+    .title {
+        margin-left: 10px;
+        margin-right: 10px;
+}
+    
 }
 
 .hit-table {
-    margin: 0 auto;
-}
-
-.hit-tr {
     border-collapse: collapse;
-    margin: 0 auto;
-}
-
-.hit-tr td {
+    margin: auto;
+    width: 370px;
+    height: 300px;
     border: 2px solid #333;
     text-align: center;
     vertical-align: middle;
     font-weight: bold;
+    position: sticky;
+}
+
+.cell {
+    width: 59px;
+    height: 59px;
+    border-collapse: collapse;
+    position: sticky;
+}
+
+.hit-tr td {
+    border: 1px solid #333;
+    text-align: center;
+    vertical-align: middle;
+    font-size: large;
+    position: sticky;
+    border-collapse: collapse;
 }
 
 .ite {
     text-align: center;
 }
 
-/* PC用 */
-.hit-tr td {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
+h2 {
+    text-align: center;
 }
 
 /* スマホ用 */
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
     .hit-tr td {
-        width: 14vw;
-        height: 14vw;
-        font-size: 1.5rem;
+        width: 65px;
+        height: 65px;
     }
-}
+} */
+
+/* @media screen and (orientation: landscape) and (max-width: 1024px) {
+    html, body {
+        width: 100vw;
+        margin: 0;
+    }
+
+    .parent {
+        width: 100%;
+        max-width: none;
+        padding: 10px;
+    }
+
+    form {
+        max-width: none !important;
+        width: 100%;
+    }
+} */

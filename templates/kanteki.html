@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block contents %}
-<br>
-<h1>看的</h1>
-<br>
+<h2>{{ opponent }}</h2>
+
 <table class="hit-table">
     <!-- {% for row in table %}
     <tr class="hit-tr">
@@ -34,10 +33,9 @@
 
 <br>
 <br>
-<p><a href="{{ url_for('index') }}">戻る</a></p>
+<p class="return_class"><a href="{{ url_for('index') }}">戻る</a></p>
 
 <script>
     const res = JSON.parse('{{ res | tojson | safe }}');
 </script>
-<script src="{{ url_for('static', filename='/script.js') }}"></script>
 {% endblock %}

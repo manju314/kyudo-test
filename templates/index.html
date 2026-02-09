@@ -8,26 +8,52 @@
 <br>
 <h1>的中</h1>
 <br>
+<div class="parent">
+    <label for="switch" class="switch">
+        <p>リアルモード</p>
+        <div class="switch-button">
+            <input type="checkbox" id="switch">
+            <div class="circle"></div>
+            <div class="base"></div>
+        </div>
+    </label>
+    <br>
 
-<form action="{{ url_for('kanteki') }}" method="post"
-    class="container text-center mt-4" style="max-width:400px;">
+    <form action="{{ url_for('kanteki') }}" method="post"
+        class="form-css">
 
-    <label for="hit" class="form-label mobile-big-label">
-    相手校の的中数を選択してください
-    </label><br>
+        <label for="opponent">
+        相手校を選択してください
+        </label><br>
+        <select name="opponent" id="opponent-select" required>
+            <button>
+                <selectedcontent></selectedcontent>
+            </button>
 
-    <select name="hit" id="hit"
-        class="form-select form-select-lg mobile-big-select" required>
-        {% for i in range(25) %}
-        <option value="{{ i }}" {% if i == 24 %}selected{% endif %}>
-            {{ i }}
-        </option>
-        {% endfor %}
-    </select>
+            {% for i in range(opponents|length) %}
+            <option value="{{ opponents[i] }}" {% if i == 0 %}selected{% endif %}>
+                {{ opponents[i] }}
+            </option>
+            {% endfor %}
+        </select><br><br>
 
-    <button type="submit" 
-        class="btn btn-primary btn-lg w-100 mt-3 mobile-big-btn">
-        スタート
-    </button>
-</form>
+        <label for="hit" class="">
+        相手校の的中数を選択してください
+        </label><br>
+        <select name="hit" id="hit" required>
+            <button>
+                <selectedcontent></selectedcontent>
+            </button>
+            {% for i in range(25) %}
+            <option value="{{ i }}" {% if i == 24 %}selected{% endif %}>
+                {{ i }}
+            </option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit" class="start-button">
+            スタート
+        </button>
+    </form>
+</div>
 {% endblock %}
