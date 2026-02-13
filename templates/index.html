@@ -9,19 +9,19 @@
 <h1>的中</h1>
 <br>
 <div class="parent">
-    <label for="switch" class="switch">
-        <p>リアルモード</p>
-        <div class="switch-button">
-            <input type="checkbox" id="switch">
-            <div class="circle"></div>
-            <div class="base"></div>
-        </div>
-    </label>
-    <br>
-
-    <form action="{{ url_for('kanteki') }}" method="post"
-        class="form-css">
-
+    <form action="{{ url_for('kanteki') }}" method="post" class="form-css" name="mode-form">
+        <!-- <label for="mode" class="switch">
+            <p>リアルモード</p>
+            <div class="switch-button">
+                <input type="checkbox" id="mode" name="mode">
+                <div class="circle"></div>
+                <div class="base"></div>
+            </div>
+        </label><br> -->
+        <div>
+            <input type="checkbox" id="mode" name="mode"/>
+            <label for="mode">リアルモード</label>
+        </div><br>
         <label for="opponent">
         相手校を選択してください
         </label><br>
@@ -56,4 +56,6 @@
         </button>
     </form>
 </div>
+{% endblock %}
+{% block script %}
 {% endblock %}

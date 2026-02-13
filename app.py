@@ -1,5 +1,5 @@
-from flask import Flask, render_template,request
-import random
+from flask import Flask, render_template,request, jsonify
+import random, json
 from opponents import opponents
 
 app = Flask(__name__)
@@ -10,17 +10,16 @@ def index():
 
 @app.route("/kanteki", methods=["GET", "POST"])
 def kanteki():
-    def generate_table(rows=4, cols=6):
-        table = [[0]*cols for _ in range(rows)]
-        return table
-    
-    table = generate_table(4, 6)
-
     if request.method == "POST":
         opponent = request.form["opponent"]
         hit = int(request.form["hit"])
+        if request.form.get("mode") == "on":
+            mode = "on"
+        else:
+            mode = "off"
 
-        res = ["◯"]*24
+
+        res = ["○"]*24
         if hit != 24:
             count = 24 - hit
             num_list = []
@@ -29,19 +28,24 @@ def kanteki():
                 num = random.randint(0,23)
                 if not num in num_list:
                     num_list.append(num)
-                    res[num]="X"
+                    res[num]="×"
                     count -= 1
             print(num_list)
-
-        # resIndex = 0
-        # for r in range(4-1, -1, -1):          # 下の行 → 上の行
-        #     for c in range(6-1, -1, -1):      # 右 → 左
-        #         table[r][c] = res[resIndex]
-        #         resIndex += 1
         
-        return render_template("kanteki.html", opponent=opponent, res=res)
+        data = {
+            "res": res,
+            "mode": mode
+        }
+
+        def save_json(data):    
+            with open('static/data.json', 'w', encoding='utf-8') as f:
+                json.dump(data,f, indent=4, ensure_ascii=False)
+        
+        save_json(data)
+        
+        return render_template("kanteki.html", opponent=opponent, res=res, mode=mode)
     else:
-        return render_template("index.html")
+        return render_template("index.html", opponents=opponents)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

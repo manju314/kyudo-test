@@ -5,37 +5,38 @@
 {% endblock %}
 
 {% block contents %}
-<h2>{{ opponent }}</h2>
+<div class="kanteki">
+    <h2 class="opponent">{{ opponent }}</h2>
+    <table id="hit-table" class="hit-table">
+        <tbody>
+            {% for row in range(4) %}
+            <tr class="hit-tr">
+                {% for col in range(6) %}
+                <td class="cell">
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tr>
+        </tbody>
+    </table>
 
-<table class="hit-table">
-    <!-- {% for row in table %}
-    <tr class="hit-tr">
-        {% for cell in row %}
-            <td>
-            {{ cell }}
-            </td>
+    <table class="ite-table">
+        <tr class="ite">
+        {% for i in range(6, 0, -1) %}
+            <td class="ite-number">{{ i }}</td>
         {% endfor %}
-        </tr>
-    {% endfor %} -->
-    {% for r in range(4) %}
-    <tr class="hit-tr">
-        {% for c in range(6) %}
-        <td class="cell"></td>
-        {% endfor %}
-    </tr>
-    {% endfor %}
-    <tr class="ite">
-    {% for i in range(6, 0, -1) %}
-        <td class="bottom-number">{{ i }}</td>
-    {% endfor %}
-    </tr>
-</table>
+    </table>
 
-<br>
-<br>
-<p class="return_class"><a href="{{ url_for('index') }}">戻る</a></p>
+</div>
 
+<p class="return"><a href="{{ url_for('index') }}">戻る</a></p>
+
+{% endblock %}
+{% block script %}
 <script>
-    const res = JSON.parse('{{ res | tojson | safe }}');
+    const res = JSON.parse('{{ res | tojson }}');
+    const mode = '{{ mode | tojson }}';
 </script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}

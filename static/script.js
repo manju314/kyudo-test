@@ -1,20 +1,123 @@
-const cells = Array.from(document.querySelectorAll(".cell"));
+fetch("/static/data.json")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        console.log(data.res);
+        console.log(data.mode);
 
-const order = [];
-for (let r = 3; r >= 0; r--) {
-    for (let c = 5; c >= 0; c--) {
-        order.push(r * 6 + c);
+        if (data.mode === "on") {
+            realMode();
+        } else {
+            nomalMode();
+        }
+    })
+    .catch(error => {
+        console.error("JSON読み込みエラー:", error);
+    });
+
+const cells = Array.from(document.querySelectorAll(".cell"));
+console.log(cells)
+console.log(mode)
+console.log(typeof(mode))
+console.log(typeof(mode) === typeof("on"))
+const lenRes = res.length;
+
+
+// if (data.mode === "on") {
+//     realMode();
+// } else {
+//     nomalMode();
+// }
+
+console.log(res)
+function realMode() {
+    console.log("realMode")
+    for (let i = 0; i < lenRes; i++) { 
+        let result = document.createTextNode(res[i]);
+        cells[i].appendChild(result);
+        let cellId = String(i);
+        cells[i].setAttribute("id",cellId);
+        let cell = document.getElementById(cellId);
+        cell.style.opacity = 0
+    }
+
+    let i = lenRes - 1;
+    function showNext() {
+        if (i >= 0) {
+            let cellId = String(i); 
+            let cell = document.getElementById(cellId);
+            cell.style.opacity = 1
+            i = i - 1;
+        }
+    }
+    setInterval(showNext, 5000);
+}
+
+function nomalMode() {
+    console.log("nomalMode")
+    for (let i = 0; i < lenRes; i++) { 
+        let result = document.createTextNode(res[i]);
+        cells[i].appendChild(result);
+        let cellId = String(i);
+        cells[i].setAttribute("id",cellId);
+        let cell = document.getElementById(cellId);
+        cell.style.opacity = 1
     }
 }
 
-let i = 0;
 
-function showNext() {
-    if (i >= res.length || i >= order.length) return;
 
-    const cellIndex = order[i];
-    cells[cellIndex].textContent = res[i];
-    i++;
-}
 
-setInterval(showNext, 5000);
+
+// const cells = Array.from(document.querySelectorAll(".cell"));
+// const toggle = document.getElementById("mode");
+
+// console.log("cells:", cells.length);
+// console.log("res:", res.length);
+// console.log(res);
+
+// if (typeof res !== "undefined" && typeof mode !== "undefined") {
+
+//     const lenRes = res.length;
+
+//     if (mode) {
+//         realMode();
+//     } else {
+//         nomalMode();
+//     }
+
+//     if (toggle) {
+//         toggle.addEventListener("change", function () {
+//             if (toggle.checked) {
+//                 realMode();
+//             } else {
+//                 nomalMode();
+//             }
+//         });
+//     }
+
+//     function realMode() {
+//         for (let i = 0; i < lenRes; i++) { 
+//             cells[i].textContent = res[i];
+//             cells[i].style.opacity = 0;
+//         }
+
+//         let i = lenRes - 1;
+
+//         function showNext() {
+//             if (i >= 0) {
+//                 cells[i].style.opacity = 1;
+//                 i--;
+//             }
+//         }
+
+//         setInterval(showNext, 5000);
+//     }
+
+//     function nomalMode() {
+//         for (let i = 0; i < lenRes; i++) { 
+//             cells[i].textContent = res[i];
+//             cells[i].style.opacity = 1;
+//         }
+//     }
+// }
