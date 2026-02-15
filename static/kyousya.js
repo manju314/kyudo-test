@@ -15,7 +15,7 @@ fetch("/static/data.json")
     });
 
 const cells = Array.from(document.querySelectorAll(".cell"));
-console.log(cells)
+
 const lenRes = res.length;
 
 console.log(res)
@@ -58,7 +58,6 @@ function nomalMode() {
 
 function totalResView() {
     const totalRes = document.getElementById('totalRes');
-    const toKyousya = document.getElementById('toKyousya');
     totalRes.style.opacity = 1
     toKyousya.style.opacity = 1
 }

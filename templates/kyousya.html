@@ -5,15 +5,14 @@
 {% endblock %}
 
 {% block contents %}
-<div class="kanteki">
+<div class="kyousya">
     <h2 class="opponent">{{ opponent }}</h2>
     <table id="hit-table" class="hit-table">
         <tbody>
-            {% for row in range(4) %}
+            {% for row in range(2) %}
             <tr class="hit-tr">
                 {% for col in range(nop) %}
-                <td class="cell">
-                </td>
+                <td class="cell"></td>
                 {% endfor %}
             </tr>
             {% endfor %}
@@ -25,11 +24,12 @@
         {% for i in range(nop, 0, -1) %}
             <td class="ite-number">{{ i }}</td>
         {% endfor %}
+        </tr>
     </table>
 
     <div class="tRtK">
         <h2 id="totalRes" class="totalRes">結果：{{ hit }}中</h2>
-        <h2 id="toKyousya" class="toKyousya"><a href="{{ url_for('kyousya') }}">競射</a></h2>
+        <h2 id="toKyousya" class="toKyousya"><a href="{{ url_for('kyousya2') }}">競射</a></h2>
     </div>
 </div>
 
@@ -40,5 +40,5 @@
 <script>
     const res = JSON.parse('{{ res | tojson }}');
 </script>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='kyousya.js') }}"></script>
 {% endblock %}

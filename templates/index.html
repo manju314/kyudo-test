@@ -6,7 +6,7 @@
 
 {% block contents %}
 <br>
-<h1>的中</h1>
+<h1>対戦相手</h1>
 <br>
 <div class="parent">
     <form action="{{ url_for('kanteki') }}" method="post" class="form-css" name="mode-form">
@@ -22,10 +22,23 @@
             <input type="checkbox" id="mode" name="mode"/>
             <label for="mode">リアルモード</label>
         </div><br>
+        
+        <select name="NumOfPeople" id="NumOfPeople" required>
+            <button>
+                <selectedcontent></selectedcontent>
+            </button>
+            {% for i in range(4,7) %}
+            <option>
+                {{ i }}
+            </option>
+            {% endfor %}
+        </select>
+        <label for="NumOfPeople">人立ち</label><br><br>
+
         <label for="opponent">
         相手校を選択してください
         </label><br>
-        <select name="opponent" id="opponent-select" required>
+        <select name="opponent" id="opponent" required>
             <button>
                 <selectedcontent></selectedcontent>
             </button>
@@ -40,16 +53,40 @@
         <label for="hit" class="">
         相手校の的中数を選択してください
         </label><br>
-        <select name="hit" id="hit" required>
-            <button>
-                <selectedcontent></selectedcontent>
-            </button>
-            {% for i in range(25) %}
-            <option value="{{ i }}" {% if i == 24 %}selected{% endif %}>
-                {{ i }}
-            </option>
-            {% endfor %}
-        </select><br><br>
+        <div class="hit">
+            <div class="lowHit">
+                <!-- <label for="lowHit" class="">
+                    最低：
+                </label> -->
+                <select name="lowHit" id="lowHit" required>
+                    <button>
+                        <selectedcontent></selectedcontent>
+                    </button>
+                    {% for i in range(25) %}
+                    <option value="{{ i }}" {% if i == 12 %}selected{% endif %}>
+                        {{ i }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <p name="tekichuu-p">〜</p>
+            <div class="highHit">
+                <!-- <label for="hightHit" class="">
+                    最高：
+                </label> -->
+                <select name="highHit" id="highHit" required>
+                    <button>
+                        <selectedcontent></selectedcontent>
+                    </button>
+                    {% for i in range(17) %}
+                    <option value="{{ i }}" {% if i == 16 %}selected{% endif %}>
+                        {{ i }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <br><br>
 
         <button type="submit" class="start-button">
             スタート
@@ -58,4 +95,5 @@
 </div>
 {% endblock %}
 {% block script %}
+<script src="{{ url_for('static', filename='NumOfPeople.js') }}"></script>
 {% endblock %}

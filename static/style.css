@@ -3,19 +3,56 @@
 html {
   /* モダンなWebアプリの推奨スタック */
     font-family: "Inter", "Noto Sans JP", "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
-    margin: 10px;
     font-size: 100%;
+    width: 90%;
+    height: 90%;
+    margin: auto;
 }
 
 form {
     margin: auto;
 }
 
-select {
+.kanteki {
+    margin: auto;
+}
+
+select[name='opponent'] {
     font-size: large;
     border: 2px solid #dddddd;
     background: #eeeeee;
     width: 100%;
+    padding: 15px;
+    transition: 0.4s;
+}
+
+select[name='NumOfPeople'] {
+    font-size: large;
+    border: 2px solid #dddddd;
+    background: #eeeeee;
+    width: 25%;
+    padding: 15px;
+    transition: 0.4s;
+}
+
+.hit {
+    display: flex;
+}
+
+select[name='lowHit'] {
+    font-size: large;
+    border: 2px solid #dddddd;
+    background: #eeeeee;
+    width: auto;
+    padding: 15px;
+    transition: 0.4s;
+}
+
+select[name='highHit'] {
+    font-size: large;
+    border: 2px solid #dddddd;
+    background: #eeeeee;
+    width: auto;
     padding: 15px;
     transition: 0.4s;
 }
@@ -49,6 +86,18 @@ p {
     width: fit-content;
     margin-left: auto;
     margin-right: 0;
+}
+
+p[name='tekichuu-p'] {
+    margin: auto 0px;
+} 
+
+.lowHit {
+    margin: auto;
+}
+
+.highHit {
+    margin: auto;
 }
 
 /* .switch-button {
@@ -125,21 +174,50 @@ p {
     font-size: 1.5em;
 }
 
-.opponent {
+h2 {
     text-align: center;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
+/* .opponent {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+} */
+
+/* .result {
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+} */
+
 .return {
-    margin-top: 250px;
+    margin-top: 50%;
     font-size: 1.5em;
+}
+
+.tRtK {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.totalRes {
+    opacity: 0;
+    width: 50%;
+    margin: auto;
+}
+
+.toKyousya {
+    opacity: 0;
+    width: 30%;
+    margin: auto;
 }
 
 @media screen and (min-width: 1000px) {
 	/* 481px以上に適用されるCSS（タブレット用） */
     body {
-        width: 90vw;
         margin: auto;
         font-size: 150%;
     }
@@ -155,6 +233,18 @@ p {
         width: 100%;
         padding: 15px;
         transition: 0.4s;
+    }
+
+    p[name='tekichuu-p'] {
+        margin: auto 0px;
+    } 
+
+    .lowHit {
+        margin: auto;
+    }
+
+    .highHit {
+        margin: auto;
     }
 
     .start-button {
@@ -224,10 +314,6 @@ p {
         background-color: #ddd;
     } */
 
-    .kanteki {
-        margin-top: 30px;
-    }
-
     .hit-table {
         margin: auto;
         border-collapse: collapse;
@@ -262,14 +348,22 @@ p {
         font-size: 2em;
     }
 
-    .opponent {
+    h2 {
         text-align: center;
-        margin-top: 0px;
+        margin-top: 10px;
         margin-bottom: 10px;
         font-size: 2em;
     }
 
+    /* .opponent {
+        text-align: center;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        font-size: 2em;
+    } */
+
     .return {
-        margin-top: 500px;
+        margin-top: 60%;
+        font-size: 2em;
     }
 }
