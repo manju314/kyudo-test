@@ -5,9 +5,10 @@ const lowHit = document.getElementById('lowHit');
 function updateHitRange() {
 
     const selectedValue = NumOfPeople.value;
-    let max = 16;  // デフォルト（4人立ち）
-
-    if (selectedValue === "5") {
+    let max = 0;
+    if (selectedValue === "4") {
+        max = 16;
+    } else if (selectedValue === "5") {
         max = 20;
     } else if (selectedValue === "6") {
         max = 24;
@@ -46,11 +47,8 @@ function updateHitRange() {
 // 変更時
 NumOfPeople.addEventListener('change', updateHitRange);
 
-// ページ読み込み時にも反映
-window.addEventListener("DOMContentLoaded", updateHitRange);
-
 lowHit.addEventListener("change", () => {
-    if (parseInt(lowHit.value) > parseInt(highHit.value)) {
+    if (lowHit.value > highHit.value) {
         highHit.value = lowHit.value;
     }
 });

@@ -28,7 +28,7 @@
                 <selectedcontent></selectedcontent>
             </button>
             {% for i in range(4,7) %}
-            <option>
+            <option value="{{ i }}" {% if i == num_of_people %}selected{% endif %}>
                 {{ i }}
             </option>
             {% endfor %}
@@ -44,7 +44,7 @@
             </button>
 
             {% for i in range(opponents|length) %}
-            <option value="{{ opponents[i] }}" {% if i == 0 %}selected{% endif %}>
+            <option value="{{ opponents[i] }}" {% if opponents[i] == opponent %}selected{% endif %}>
                 {{ opponents[i] }}
             </option>
             {% endfor %}
@@ -55,15 +55,12 @@
         </label><br>
         <div class="hit">
             <div class="lowHit">
-                <!-- <label for="lowHit" class="">
-                    最低：
-                </label> -->
                 <select name="lowHit" id="lowHit" required>
                     <button>
                         <selectedcontent></selectedcontent>
                     </button>
-                    {% for i in range(25) %}
-                    <option value="{{ i }}" {% if i == 12 %}selected{% endif %}>
+                    {% for i in range(cell_num+1) %}
+                    <option value="{{ i }}" {% if i == lowHit %}selected{% endif %}>
                         {{ i }}
                     </option>
                     {% endfor %}
@@ -71,15 +68,12 @@
             </div>
             <p name="tekichuu-p">〜</p>
             <div class="highHit">
-                <!-- <label for="hightHit" class="">
-                    最高：
-                </label> -->
                 <select name="highHit" id="highHit" required>
                     <button>
                         <selectedcontent></selectedcontent>
                     </button>
-                    {% for i in range(17) %}
-                    <option value="{{ i }}" {% if i == 16 %}selected{% endif %}>
+                    {% for i in range(cell_num+1) %}
+                    <option value="{{ i }}" {% if i == highHit %}selected{% endif %}>
                         {{ i }}
                     </option>
                     {% endfor %}

@@ -1,12 +1,37 @@
-from flask import Flask, render_template,request, jsonify
-import random, json
+from flask import Flask, render_template, request, session
+import random, json, secrets, os
+from flask_session import Session
 from opponents import opponents
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
+# if not app.secret_key:
+#     raise ValueError("SECRET_KEY is not set")
+
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html", opponents=opponents)
+    if "data" not in session: 
+        num_of_people = 4
+        cell_num = num_of_people * 4
+        num = random.randint(0, len(opponents)-1)
+        opponent = opponents[num]
+        print(opponent)
+        lowHit = cell_num/2
+        highHit = cell_num
+        mode = "off"
+    else:
+        data = session.get("data")
+        num_of_people = data["num_of_people"]
+        cell_num = data["cell_num"]
+        opponent = data["opponent"]
+        lowHit = data["lowHit"]
+        highHit = data["highHit"]
+        mode = data["mode"]
+        print(num_of_people)
+    return render_template("index.html", opponents=opponents, num_of_people=num_of_people, cell_num=cell_num, opponent=opponent, lowHit=lowHit, highHit=highHit, mode=mode)
 
 @app.route("/kanteki", methods=["GET", "POST"])
 def kanteki():
@@ -28,10 +53,7 @@ def kanteki():
 
         cell_num = nop*4
         res = ["○"]*(cell_num)
-        if lowHit <= highHit:
-            hit = random.randint(lowHit, highHit)
-        else:
-            hit = random.randint(lowHit, highHit)
+        hit = random.randint(lowHit, highHit)
         if hit != cell_num:
             count = cell_num - hit
             num_list = []
@@ -53,23 +75,29 @@ def kanteki():
             "mode": mode
         }
 
+        session["data"] = data
+        print(session)
+
+        mode_data = {
+            "mode": mode
+        }
+
         def save_json(data):    
-            with open('static/data.json', 'w', encoding='utf-8') as f:
+            with open('static/mode.json', 'w', encoding='utf-8') as f:
                 json.dump(data,f, indent=4, ensure_ascii=False)
         
-        save_json(data)
-        
+        save_json(mode_data)
+
         return render_template("kanteki.html", opponent=opponent, nop=nop, res=res, hit=hit)
     else:
         return render_template("index.html", opponents=opponents)
     
 @app.route("/kyousya", methods=["GET", "POST"])
 def kyousya():
-    with open('./static/data.json') as f:
-        d = json.load(f)
-    opponent = d['opponent']
-    nop = d["num_of_people"]
-    maxHit = int(d["cell_num"]/2)
+    data = session.get("data")
+    opponent = data["opponent"]
+    nop = data["num_of_people"]
+    maxHit = int(data["cell_num"]/2)
 
     minHit = int(maxHit/2)
     res = ["○"]*maxHit
@@ -90,11 +118,10 @@ def kyousya():
 
 @app.route("/kyousya2", methods=["GET", "POST"])
 def kyousya2():
-    with open('./static/data.json') as f:
-        d = json.load(f)
-    opponent = d['opponent']
-    nop = d["num_of_people"]
-    maxHit = int(d["cell_num"]/4)
+    data = session.get("data")
+    opponent = data["opponent"]
+    nop = data["num_of_people"]
+    maxHit = int(data["cell_num"]/4)
 
     minHit = int(maxHit/2)
     res = ["○"]*maxHit
