@@ -391,4 +391,12 @@ h2 {
         margin-top: 60%;
         font-size: 2em;
     }
+
+    legend {
+        font-size: 2em;
+    }
+
+    .displaySpeed {
+        font-size: 2em;
+    }
 }
