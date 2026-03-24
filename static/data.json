@@ -1,0 +1,9 @@
+{
+    "opponent": "近畿大学",
+    "num_of_people": 5,
+    "cell_num": 20,
+    "lowHit": 10,
+    "highHit": 20,
+    "mode": "on",
+    "display_time": 11000
+}

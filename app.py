@@ -40,6 +40,8 @@ def kanteki():
         nop = int(request.form["NumOfPeople"])
         lowHit = int(request.form["lowHit"])
         highHit = request.form.get("highHit")
+        display_speed = request.form.get("display_speed")
+
         if not highHit is None:
             highHit = int(highHit)
         else:
@@ -66,27 +68,36 @@ def kanteki():
                     count -= 1
             print(num_list)
         
+        display_time = 13500
+        if display_speed == "slow":
+            display_time = 15000
+        elif display_speed == "normal":
+            display_time = 13500
+        else:
+            display_time = 12000
+
         data = {
             "opponent": opponent,
             "num_of_people": nop,
             "cell_num": cell_num,
             "lowHit": lowHit,
             "highHit": highHit,
-            "mode": mode
+            "mode": mode,
+            "display_time": display_time,
         }
 
         session["data"] = data
         print(session)
 
-        mode_data = {
-            "mode": mode
-        }
+        # mode_data = {
+        #     "mode": mode
+        # }
 
         def save_json(data):    
-            with open('static/mode.json', 'w', encoding='utf-8') as f:
+            with open('static/data.json', 'w', encoding='utf-8') as f:
                 json.dump(data,f, indent=4, ensure_ascii=False)
         
-        save_json(mode_data)
+        save_json(data)
 
         return render_template("kanteki.html", opponent=opponent, nop=nop, res=res, hit=hit)
     else:

@@ -5,7 +5,16 @@ html {
     font-family: "Inter", "Noto Sans JP", "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
     font-size: 100%;
     width: 90%;
-    height: 90%;
+    height: auto;
+    margin: auto;
+}
+
+.title {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.parent {
     margin: auto;
 }
 
@@ -22,7 +31,7 @@ select[name='opponent'] {
     border: 2px solid #dddddd;
     background: #eeeeee;
     width: 100%;
-    padding: 15px;
+    padding: 5px;
     transition: 0.4s;
 }
 
@@ -31,29 +40,24 @@ select[name='NumOfPeople'] {
     border: 2px solid #dddddd;
     background: #eeeeee;
     width: 25%;
-    padding: 15px;
+    padding: 5px;
     transition: 0.4s;
 }
 
 .hit {
     display: flex;
+    align-items: center;     /* 縦中央揃え */
+    justify-content: center; /* 横中央 */
+    gap: 10px;    
 }
 
-select[name='lowHit'] {
+.lowHit select,
+.highHit select {
+    width: 80px;  /* 固定幅にするのがポイント */
     font-size: large;
     border: 2px solid #dddddd;
     background: #eeeeee;
-    width: auto;
-    padding: 15px;
-    transition: 0.4s;
-}
-
-select[name='highHit'] {
-    font-size: large;
-    border: 2px solid #dddddd;
-    background: #eeeeee;
-    width: auto;
-    padding: 15px;
+    padding: 5px;
     transition: 0.4s;
 }
 
@@ -62,7 +66,8 @@ select[name='highHit'] {
     text-align: center;
     color: #eeeeee;
     margin-top: 30px;
-    padding: 15px;
+    margin-bottom: 50px;
+    padding: 10px;
     background-color: rgb(56, 56, 56);
     border: none;
     border-radius: 15px;
@@ -215,6 +220,18 @@ h2 {
     margin: auto;
 }
 
+.displaySpeed {
+    display: flex;
+    justify-content: space-around; /* 等間隔に配置 */
+    width: 300px; /* 適宜調整 */
+}
+
+.displaySpeed label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 @media screen and (min-width: 1000px) {
 	/* 481px以上に適用されるCSS（タブレット用） */
     body {
@@ -230,8 +247,8 @@ h2 {
         font-size: large;
         border: 2px solid #dddddd;
         background: #eeeeee;
-        width: 100%;
-        padding: 15px;
+        width: auto;
+        padding: 5px 10px;
         transition: 0.4s;
     }
 

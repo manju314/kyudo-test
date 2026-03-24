@@ -6,7 +6,7 @@
 
 {% block contents %}
 <br>
-<h1>対戦相手</h1>
+<h1 class="title">対戦相手</h1>
 <br>
 <div class="parent">
     <form action="{{ url_for('kanteki') }}" method="post" class="form-css" name="mode-form">
@@ -56,9 +56,6 @@
         <div class="hit">
             <div class="lowHit">
                 <select name="lowHit" id="lowHit" required>
-                    <button>
-                        <selectedcontent></selectedcontent>
-                    </button>
                     {% for i in range(cell_num+1) %}
                     <option value="{{ i }}" {% if i == lowHit %}selected{% endif %}>
                         {{ i }}
@@ -81,6 +78,14 @@
             </div>
         </div>
         <br><br>
+        
+        
+        <legend>相手の行射速度を選択してください</legend>
+        <div class="displaySpeed">
+            <label><input type="radio" name="display_speed" value="slow"> 遅い</label>
+            <label><input type="radio" name="display_speed" value="normal" checked> 普通</label>
+            <label><input type="radio" name="display_speed" value="fast"> 速い</label>
+        </div>
 
         <button type="submit" class="start-button">
             行射開始

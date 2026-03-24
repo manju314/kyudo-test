@@ -1,11 +1,11 @@
-fetch("/static/mode.json")
+fetch("/static/data.json")
     .then(response => response.json())
     .then(data => {
         console.log(data);
         console.log(data.mode);
 
         if (data.mode === "on") {
-            realMode();
+            realMode(data.display_time);
         } else {
             nomalMode();
         }
@@ -19,7 +19,7 @@ console.log(cells)
 const lenRes = res.length;
 
 console.log(res)
-function realMode() {
+function realMode(displayTime) {
     console.log("realMode")
     for (let i = 0; i < lenRes; i++) { 
         let results = document.createTextNode(res[i]);
@@ -39,8 +39,8 @@ function realMode() {
             i = i - 1;
         }
     }
-    setInterval(showNext, 10000);
-    setInterval(totalResView, 5000*(lenRes+0.25));
+    setInterval(showNext, displayTime);
+    setInterval(totalResView, displayTime*(lenRes+0.25));
 }
 
 function nomalMode() {
